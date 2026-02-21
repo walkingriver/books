@@ -1,0 +1,37 @@
+# GitHub Pages Configuration for Slow Down to Get Ahead
+
+title: Slow Down to Get Ahead
+description: 26 Communication Lessons from 30 Years in Tech—So You Don't Learn the Hard Way
+author: Michael D. Callaghan
+url: https://walkingriver.github.io
+baseurl: /SlowDownToGetAhead
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Theme (using no theme - custom HTML/CSS)
+theme: null
+
+# Exclude from processing
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+
+# Default YAML front matter for pages
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: null
+
+# SEO and social
+twitter:
+  username: walkingriver
+social:
+  name: Michael D. Callaghan
+  links:
+    - https://twitter.com/walkingriver
+    - https://walkingriver.com
