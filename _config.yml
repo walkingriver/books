@@ -1,10 +1,10 @@
-# GitHub Pages Configuration for Slow Down to Get Ahead
+# GitHub Pages Configuration for Michael D. Callaghan Books
 
-title: Slow Down to Get Ahead
-description: 26 Communication Lessons from 30 Years in Tech—So You Don't Learn the Hard Way
+title: Michael D. Callaghan
+description: Books on career growth, communication, and software development
 author: Michael D. Callaghan
 url: https://walkingriver.github.io
-baseurl: /SlowDownToGetAhead
+baseurl: /books
 
 # Build settings
 markdown: kramdown
