@@ -146,6 +146,52 @@ strong {
     text-align: center;
 }
 
+.hero-with-cover {
+    text-align: left;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-cover {
+    flex-shrink: 0;
+}
+
+.hero-cover .book-cover {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.hero-cover .book-cover:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-with-cover {
+        text-align: center;
+    }
+    
+    .hero-cover {
+        order: -1;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-cover .book-cover {
+        max-width: 220px;
+    }
+}
+
 .hero h1 {
     color: white;
     font-size: 3.5rem;
