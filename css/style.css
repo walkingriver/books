@@ -162,7 +162,7 @@ strong {
 }
 
 .hero-cover .book-cover {
-    max-width: 300px;
+    max-width: 450px;
     height: auto;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
     transition: transform 0.3s ease;
@@ -188,7 +188,7 @@ strong {
     }
     
     .hero-cover .book-cover {
-        max-width: 220px;
+        max-width: 280px;
     }
 }
 
