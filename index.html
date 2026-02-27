@@ -16,14 +16,29 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        @media (max-width: 768px) {
+            .hero .container {
+                justify-content: center !important;
+            }
+            .hero .hero-content {
+                text-align: center !important;
+                max-width: 100% !important;
+            }
+            .hero .hero-content p {
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="hero" style="padding: 5rem 0; background: linear-gradient(rgba(26, 54, 93, 0.75), rgba(43, 108, 176, 0.75)), url('images/hero-books.jpg') center/cover no-repeat;">
-        <div class="container">
-            <div class="hero-content">
+    <header class="hero" style="padding: 5rem 0; background: linear-gradient(rgba(26, 54, 93, 0.75), rgba(43, 108, 176, 0.75)), url('images/hero-books.jpg') left center/cover no-repeat;">
+        <div class="container" style="display: flex; justify-content: flex-end;">
+            <div class="hero-content" style="text-align: right; max-width: 450px;">
                 <h1>Michael D. Callaghan</h1>
                 <p class="subtitle">Author · Software Developer · Educator</p>
-                <p style="max-width: 600px; margin: 1.5rem auto 0; opacity: 0.9;">30+ years building software at HP, Compaq, Dell, and Disney. Now sharing what I've learned through books and courses.</p>
+                <p style="max-width: 450px; margin: 1.5rem 0 0 auto; opacity: 0.9;">30+ years building software at HP, Compaq, Dell, and Disney. Now sharing what I've learned through books and courses.</p>
             </div>
         </div>
     </header>
