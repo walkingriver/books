@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Mobile Apps with Ionic | Angular & React Editions</title>
+    <meta name="description" content="Build cross-platform mobile apps with the Ionic Framework. Choose Angular or React. Being updated for 2026 — buy now and get the update free.">
+    <meta property="og:title" content="Build Mobile Apps with Ionic Framework">
+    <meta property="og:description" content="The fastest way to go from web developer to mobile app publisher. Being updated for 2026 — buy now and get the update free.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .book-chooser {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .book-card img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+        }
+        .book-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        .book-card .framework-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .book-card.angular .framework-badge {
+            background: #dd0031;
+        }
+        .book-card.react .framework-badge {
+            background: #61dafb;
+            color: #222;
+        }
+        .book-card p {
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+        }
+        .buy-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .buy-options a {
+            text-decoration: none;
+        }
+        .price-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .price-item {
+            padding: 1.5rem 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        .price-item .format {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.25rem;
+        }
+        .price-item .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .edition-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .price-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .price-item {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="edition-badge">Being Updated for 2026</span>
+                <h1>Build Mobile Apps with Ionic</h1>
+                <p class="subtitle">The fastest way to go from web developer to App Store.<br>Choose your framework below.</p>
+                <p class="author">by Michael D. Callaghan and Todd Hale</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Book Chooser Section -->
+    <section class="samples" style="padding: 4rem 0; background: var(--color-bg-light);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 0.5rem;">Choose Your Edition</h2>
+            <p style="text-align: center; color: var(--color-text-light); margin-bottom: 2rem;">Same great content, tailored to your preferred framework</p>
+            <p style="text-align: center; background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; font-weight: 500;">
+                📘 <strong>2026 Update in Progress:</strong> Buy now and receive the completely refreshed edition free when it's ready. All Gumroad purchases include lifetime updates.
+            </p>
+            
+            <div class="book-chooser">
+                <!-- Angular Edition -->
+                <div class="book-card angular">
+                    <img src="images/cover-angular.jpg" alt="Ionic and Angular book cover">
+                    <span class="framework-badge">Angular</span>
+                    <h3>Ionic and Angular</h3>
+                    <p>For Angular developers or those new to both frameworks. Uses services and dependency injection.</p>
+                    <div class="buy-options">
+                        <a href="https://walkingriver.gumroad.com/l/ionic-angular" class="btn btn-primary">
+                            Get on Gumroad — $19.99
+                            <span style="display: block; font-size: 0.8rem; font-weight: normal; opacity: 0.9;">DRM-free ePub + PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- React Edition -->
+                <div class="book-card react">
+                    <img src="images/cover-react.jpg" alt="Ionic and React book cover">
+                    <span class="framework-badge">React</span>
+                    <h3>Ionic and React</h3>
+                    <p>For React developers. Uses modern hooks and functional components throughout.</p>
+                    <div class="buy-options">
+                        <a href="https://walkingriver.gumroad.com/l/ionic-react" class="btn btn-primary">
+                            Get on Gumroad — $19.99
+                            <span style="display: block; font-size: 0.8rem; font-weight: normal; opacity: 0.9;">DRM-free ePub + PDF</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>Sound Familiar?</h2>
+            <ul class="problem-list">
+                <li>You've followed an Ionic tutorial only to find the code doesn't work</li>
+                <li>You've spent hours debugging version mismatches</li>
+                <li>You want to build mobile apps without learning Swift or Kotlin</li>
+                <li>You've been frustrated by tutorials that stop before deployment</li>
+                <li>You're wondering if there's a faster path from idea to App Store</li>
+            </ul>
+            <p class="amplify">Here's the problem: <strong>Most Ionic tutorials are stuck in 2019.</strong> Framework versions changed. Best practices evolved. The code is broken.</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="story">
+        <div class="container">
+            <h2>These Books Are Different</h2>
+            <p><strong>Being updated for 2026.</strong> Latest Ionic. Modern Angular and React patterns. Current APIs. Code that actually works.</p>
+            <p>We've been using Ionic since 2014—before it was officially released. This book reflects everything we've learned watching frameworks evolve, APIs change, and best practices shift.</p>
+            <p>More importantly, this book doesn't stop at "Hello World." You'll build a real app and deploy it to the App Store. Start to finish.</p>
+        </div>
+    </section>
+
+    <!-- What You'll Build Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>What You'll Build</h2>
+            <p style="text-align: center; margin-bottom: 2rem;"><strong>A10Dance</strong> — A complete attendance tracking application. Not a toy. A real, deployable app.</p>
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <h3>Ionic Components</h3>
+                    <p>Cards, lists, action sheets, alerts, toasts—the building blocks of great mobile UIs.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Framework Fundamentals</h3>
+                    <p>Angular services and dependency injection, or React hooks — your choice.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Data Management</h3>
+                    <p>Create reusable services and hooks for managing application state.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Navigation</h3>
+                    <p>Implement side menus, routing, and multi-page navigation.</p>
+                </div>
+                <div class="benefit">
+                    <h3>Xcode Setup</h3>
+                    <p>Convert your Ionic app to a native iOS project.</p>
+                </div>
+                <div class="benefit">
+                    <h3>App Store Deployment</h3>
+                    <p>Icons, splash screens, screenshots, and final submission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Inside Section -->
+    <section class="transformation">
+        <div class="container">
+            <h2>What's Inside</h2>
+            <p><strong>26-27 chapters</strong> covering everything from setup to App Store submission:</p>
+            <ul>
+                <li><strong>Part 1: Building the App</strong> — Framework basics, Ionic components, state management, navigation</li>
+                <li><strong>Part 2: App Store Deployment</strong> — Xcode, device testing, App Store Connect, submission</li>
+            </ul>
+            <p style="margin-top: 1.5rem;">Hands-on from page one. No fluff. Fast-paced and practical.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Summary -->
+    <section style="padding: 4rem 0; background: var(--color-primary); color: white;">
+        <div class="container" style="text-align: center;">
+            <h2 style="color: white;">Simple Pricing</h2>
+            <p style="opacity: 0.9; margin-bottom: 1rem;">Same price for both editions.</p>
+            <p style="opacity: 0.9; margin-bottom: 2rem; font-size: 0.95rem;">Buy on Gumroad now and get the 2026 update free when it's ready.</p>
+            <div class="price-grid">
+                <div class="price-item">
+                    <div class="format">Gumroad</div>
+                    <div class="price">$19.99</div>
+                    <div style="font-size: 0.85rem; opacity: 0.9;">DRM-free ePub + PDF + Lifetime Updates</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About the Authors Section -->
+    <section class="author-section">
+        <div class="container">
+            <h2>About the Authors</h2>
+            <div class="author-content">
+                <div class="author-bio">
+                    <p><strong>Michael D. Callaghan</strong> has spent 30+ years in software development at companies including HP, Compaq, Dell, and Disney. He's been using Ionic since 2014—before it was officially released. His courses have been published on Pluralsight and Udemy.</p>
+                    <p><strong>Todd Hale</strong> is a software developer and technical writer who brings fresh perspectives to mobile development education.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ship Your First Mobile App</h2>
+            <p>Choose your framework. Get the 2026 update free.</p>
+            <div class="cta-buttons" style="flex-wrap: wrap; gap: 1rem;">
+                <a href="#" onclick="document.querySelector('.book-chooser').scrollIntoView({behavior: 'smooth'}); return false;" class="btn btn-primary btn-large">
+                    Choose Your Edition
+                </a>
+            </div>
+            <p class="guarantee">Questions? Email <a href="mailto:michael@walkingriver.com">michael@walkingriver.com</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Michael D. Callaghan. All rights reserved.</p>
+            <p><a href="https://walkingriver.com">walkingriver.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>
