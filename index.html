@@ -30,6 +30,68 @@
                 margin-right: auto !important;
             }
         }
+        .book-card {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .book-card-cover {
+            flex-shrink: 0;
+        }
+        .book-card-cover img {
+            width: 100px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .book-card-cover.dual {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .book-card-cover.dual img {
+            width: 70px;
+        }
+        .book-card-content {
+            flex: 1;
+        }
+        .book-card-content h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--color-primary);
+        }
+        .book-card-content p {
+            margin: 0 0 1rem 0;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (max-width: 500px) {
+            .book-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .book-card-cover.dual img {
+                width: 80px;
+            }
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -43,19 +105,30 @@
         </div>
     </header>
 
-    <section class="samples" style="padding: 4rem 0;">
+    <section style="padding: 4rem 0; background: var(--color-bg-light);">
         <div class="container">
-            <h2>Books</h2>
-            <div class="samples-grid">
-                <a href="slow-down-to-get-ahead/" class="sample-card">
-                    <h3>Slow Down to Get Ahead</h3>
-                    <p>26 Communication Lessons from 30 Years in Tech—So You Don't Learn the Hard Way</p>
-                    <span class="btn btn-primary" style="margin-top: 1rem; display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Books</h2>
+            <div class="books-grid">
+                <a href="slow-down-to-get-ahead/" class="book-card">
+                    <div class="book-card-cover">
+                        <img src="slow-down-to-get-ahead/images/cover.jpg" alt="Slow Down to Get Ahead book cover">
+                    </div>
+                    <div class="book-card-content">
+                        <h3>Slow Down to Get Ahead</h3>
+                        <p>26 Communication Lessons from 30 Years in Tech—So You Don't Learn the Hard Way</p>
+                        <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+                    </div>
                 </a>
-                <a href="ionic-books/" class="sample-card">
-                    <h3>Build Mobile Apps with Ionic</h3>
-                    <p>Angular & React Editions — Being Updated for 2026. Buy now and get the update free.</p>
-                    <span class="btn btn-primary" style="margin-top: 1rem; display: inline-block; padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+                <a href="ionic-books/" class="book-card">
+                    <div class="book-card-cover dual">
+                        <img src="ionic-books/images/cover-angular.jpg" alt="Ionic and Angular book cover">
+                        <img src="ionic-books/images/cover-react.jpg" alt="Ionic and React book cover">
+                    </div>
+                    <div class="book-card-content">
+                        <h3>Build Mobile Apps with Ionic</h3>
+                        <p>Angular & React Editions — Being Updated for 2026. Buy now and get the update free.</p>
+                        <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+                    </div>
                 </a>
             </div>
         </div>
