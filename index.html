@@ -62,7 +62,7 @@
             padding: 1.25rem 1.25rem 1.25rem 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
         }
         .book-card-content h3 {
             margin: 0 0 0.5rem 0;
@@ -72,6 +72,10 @@
             margin: 0 0 1rem 0;
             color: var(--color-text-light);
             font-size: 0.95rem;
+            flex-grow: 1;
+        }
+        .book-card-content .btn {
+            align-self: flex-end;
         }
         .books-grid {
             display: grid;
@@ -90,6 +94,9 @@
             .book-card-content {
                 padding: 1.25rem;
                 text-align: center;
+            }
+            .book-card-content .btn {
+                align-self: center;
             }
             .books-grid {
                 grid-template-columns: 1fr;
