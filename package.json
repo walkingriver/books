@@ -1,0 +1,12 @@
+{
+  "name": "books-website",
+  "version": "1.0.0",
+  "description": "Static marketing website for Michael D. Callaghan's books",
+  "scripts": {
+    "dev": "npx http-server -p 8080 -o",
+    "start": "npm run dev"
+  },
+  "keywords": ["books", "marketing", "static-site"],
+  "author": "Michael D. Callaghan",
+  "license": "ISC"
+}
