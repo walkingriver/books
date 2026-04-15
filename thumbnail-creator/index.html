@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Leader's Guide Thumbnail</title>
     <style>
         body {
@@ -148,6 +150,30 @@
         }
         .status.success { background: #d4edda; color: #155724; display: block; }
         .status.info { background: #d1ecf1; color: #0c5460; display: block; }
+        .color-preview-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .color-preview {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .color-input-wrapper {
+            flex: 1;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -171,7 +197,21 @@
                 </div>
                 <div class="control-group">
                     <label>Banner Color</label>
-                    <input type="color" id="bannerColor" value="#dc3232">
+                    <div class="color-preview-group">
+                        <div id="bannerColorPreview" class="color-preview" style="background-color: #dc3232;"></div>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="bannerColor" value="#dc3232">
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label>Text Color</label>
+                    <div class="color-preview-group">
+                        <div id="textColorPreview" class="color-preview" style="background-color: #ffffff;"></div>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="textColor" value="#ffffff">
+                        </div>
+                    </div>
                 </div>
                 <div class="control-group">
                     <label>Banner Opacity</label>
@@ -187,6 +227,31 @@
                     <label>Banner Height</label>
                     <input type="range" id="bannerHeight" min="5" max="30" value="15">
                     <span class="value-display" id="heightDisplay">15%</span>
+                </div>
+                <div class="control-group">
+                    <label>Font Family</label>
+                    <select id="fontFamily">
+                        <option value="-apple-system, BlinkMacSystemFont, Arial, sans-serif">System Default (San Francisco)</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="Helvetica, sans-serif">Helvetica</option>
+                        <option value="'Helvetica Neue', sans-serif">Helvetica Neue</option>
+                        <option value="'Times New Roman', serif">Times New Roman</option>
+                        <option value="Georgia, serif">Georgia</option>
+                        <option value="'Courier New', monospace">Courier New</option>
+                        <option value="Verdana, sans-serif">Verdana</option>
+                        <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                        <option value="Impact, sans-serif">Impact</option>
+                        <option value="'Comic Sans MS', cursive">Comic Sans MS</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Font Weight</label>
+                    <select id="fontWeight">
+                        <option value="400">Normal</option>
+                        <option value="600">Semi-Bold</option>
+                        <option value="700" selected>Bold</option>
+                        <option value="900">Black</option>
+                    </select>
                 </div>
                 <div class="control-group">
                     <label>Font Size</label>
@@ -283,12 +348,27 @@
         }
 
         // Add event listeners for auto-update
-        const controls = ['bannerText', 'bannerColor', 'bannerOpacity', 'bannerPosition', 'bannerHeight', 'fontSize'];
+        const controls = ['bannerText', 'bannerColor', 'textColor', 'bannerOpacity', 'bannerPosition', 'bannerHeight', 'fontSize', 'fontFamily', 'fontWeight'];
         controls.forEach(id => {
             document.getElementById(id).addEventListener('input', () => {
                 updateDisplays();
+                updateColorPreviews();
                 debounce(updateThumbnail)();
             });
+        });
+
+        // Update color previews
+        function updateColorPreviews() {
+            document.getElementById('bannerColorPreview').style.backgroundColor = document.getElementById('bannerColor').value;
+            document.getElementById('textColorPreview').style.backgroundColor = document.getElementById('textColor').value;
+        }
+
+        // Click on color preview to trigger color picker
+        document.getElementById('bannerColorPreview').addEventListener('click', () => {
+            document.getElementById('bannerColor').click();
+        });
+        document.getElementById('textColorPreview').addEventListener('click', () => {
+            document.getElementById('textColor').click();
         });
 
         // Crop input handlers
@@ -341,22 +421,25 @@
 
             // Get settings
             const text = document.getElementById('bannerText').value;
-            const color = document.getElementById('bannerColor').value;
+            const bannerColor = document.getElementById('bannerColor').value;
+            const textColor = document.getElementById('textColor').value;
             const opacity = document.getElementById('bannerOpacity').value / 100;
             const position = document.getElementById('bannerPosition').value / 100;
             const heightPercent = document.getElementById('bannerHeight').value / 100;
             const fontSize = parseInt(document.getElementById('fontSize').value);
+            const fontFamily = document.getElementById('fontFamily').value;
+            const fontWeight = document.getElementById('fontWeight').value;
 
             // Calculate banner dimensions
             const bannerHeight = canvas.height * heightPercent;
             const bannerY = (canvas.height - bannerHeight) * position;
 
             // Draw banner
-            ctx.fillStyle = hexToRgba(color, opacity);
+            ctx.fillStyle = hexToRgba(bannerColor, opacity);
             ctx.fillRect(0, bannerY, canvas.width, bannerHeight);
 
             // Draw text
-            ctx.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, Arial, sans-serif`;
+            ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
 
@@ -365,7 +448,7 @@
             ctx.fillText(text, canvas.width / 2 + 2, bannerY + bannerHeight / 2 + 2);
 
             // Main text
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = textColor;
             ctx.fillText(text, canvas.width / 2, bannerY + bannerHeight / 2);
 
             downloadBtn.disabled = false;
@@ -466,6 +549,7 @@
 
         // Initialize displays
         updateDisplays();
+        updateColorPreviews();
     </script>
 </body>
 </html>
