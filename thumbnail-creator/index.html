@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Leader's Guide Thumbnail</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-top: 0; }
+        .layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .controls {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            height: fit-content;
+        }
+        .preview-area {
+            position: relative;
+        }
+        .control-group {
+            margin: 15px 0;
+        }
+        .control-group h3 {
+            margin: 20px 0 10px 0;
+            color: #555;
+            font-size: 14px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        input[type="text"], input[type="color"], input[type="range"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="range"] {
+            padding: 0;
+        }
+        input[type="number"] {
+            width: 80px;
+            display: inline-block;
+        }
+        .value-display {
+            display: inline-block;
+            margin-left: 10px;
+            color: #666;
+            font-size: 13px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            width: 100%;
+        }
+        button:hover { background: #45a049; }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        button.secondary {
+            background: #2196F3;
+        }
+        button.secondary:hover {
+            background: #0b7dda;
+        }
+        #canvas {
+            max-width: 100%;
+            border: 2px solid #ddd;
+            cursor: crosshair;
+            border-radius: 4px;
+        }
+        .crop-container {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+        }
+        .crop-overlay {
+            position: absolute;
+            border: 2px dashed #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            cursor: move;
+            display: none;
+        }
+        .crop-handle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #4CAF50;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .crop-handle.nw { top: -6px; left: -6px; cursor: nw-resize; }
+        .crop-handle.ne { top: -6px; right: -6px; cursor: ne-resize; }
+        .crop-handle.sw { bottom: -6px; left: -6px; cursor: sw-resize; }
+        .crop-handle.se { bottom: -6px; right: -6px; cursor: se-resize; }
+        .file-input {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            border: 2px dashed #ccc;
+            text-align: center;
+            cursor: pointer;
+        }
+        .file-input:hover {
+            background: #e8e8e8;
+            border-color: #999;
+        }
+        .file-input input {
+            display: none;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            display: none;
+        }
+        .status.success { background: #d4edda; color: #155724; display: block; }
+        .status.info { background: #d1ecf1; color: #0c5460; display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 Thumbnail Creator</h1>
+        <p>Add a banner overlay to your book cover. All changes update in real-time.</p>
+
+        <label class="file-input">
+            <input type="file" id="imageInput" accept="image/*">
+            <span>📁 Click to select your book cover image</span>
+        </label>
+
+        <div id="status" class="status"></div>
+
+        <div class="layout">
+            <div class="controls">
+                <h3>Banner Settings</h3>
+                <div class="control-group">
+                    <label>Banner Text</label>
+                    <input type="text" id="bannerText" value="FREE - Leader's Guide to AI">
+                </div>
+                <div class="control-group">
+                    <label>Banner Color</label>
+                    <input type="color" id="bannerColor" value="#dc3232">
+                </div>
+                <div class="control-group">
+                    <label>Banner Opacity</label>
+                    <input type="range" id="bannerOpacity" min="0" max="100" value="95">
+                    <span class="value-display" id="opacityDisplay">95%</span>
+                </div>
+                <div class="control-group">
+                    <label>Banner Position (0 = top, 100 = bottom)</label>
+                    <input type="range" id="bannerPosition" min="0" max="100" value="6">
+                    <span class="value-display" id="positionDisplay">6%</span>
+                </div>
+                <div class="control-group">
+                    <label>Banner Height</label>
+                    <input type="range" id="bannerHeight" min="5" max="30" value="15">
+                    <span class="value-display" id="heightDisplay">15%</span>
+                </div>
+                <div class="control-group">
+                    <label>Font Size</label>
+                    <input type="range" id="fontSize" min="20" max="120" value="50">
+                    <span class="value-display" id="fontDisplay">50px</span>
+                </div>
+
+                <h3>Cropping</h3>
+                <div class="control-group">
+                    <button id="toggleCrop" class="secondary" disabled>Enable Crop Mode</button>
+                    <p style="font-size: 12px; color: #666; margin-top: 10px;">
+                        Click and drag on the image to define crop area.
+                    </p>
+                </div>
+                <div class="control-group">
+                    <label>Crop X</label>
+                    <input type="number" id="cropX" value="0" min="0"> px
+                </div>
+                <div class="control-group">
+                    <label>Crop Y</label>
+                    <input type="number" id="cropY" value="0" min="0"> px
+                </div>
+                <div class="control-group">
+                    <label>Crop Width</label>
+                    <input type="number" id="cropWidth" value="0" min="0"> px
+                </div>
+                <div class="control-group">
+                    <label>Crop Height</label>
+                    <input type="number" id="cropHeight" value="0" min="0"> px
+                </div>
+                <div class="control-group">
+                    <button id="resetCrop" class="secondary" disabled>Reset Crop</button>
+                </div>
+
+                <h3>Export</h3>
+                <button id="downloadBtn" disabled>💾 Download Thumbnail</button>
+            </div>
+
+            <div class="preview-area">
+                <div class="crop-container">
+                    <canvas id="canvas"></canvas>
+                    <div id="cropOverlay" class="crop-overlay">
+                        <div class="crop-handle nw"></div>
+                        <div class="crop-handle ne"></div>
+                        <div class="crop-handle sw"></div>
+                        <div class="crop-handle se"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const imageInput = document.getElementById('imageInput');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const toggleCropBtn = document.getElementById('toggleCrop');
+        const resetCropBtn = document.getElementById('resetCrop');
+        const cropOverlay = document.getElementById('cropOverlay');
+        const statusDiv = document.getElementById('status');
+
+        let currentImage = null;
+        let updateTimeout = null;
+        let cropMode = false;
+        let cropData = { x: 0, y: 0, width: 0, height: 0 };
+        let isDragging = false;
+        let dragStart = { x: 0, y: 0 };
+        let resizeHandle = null;
+
+        // Debounce function
+        function debounce(func, wait = 300) {
+            return function executedFunction(...args) {
+                clearTimeout(updateTimeout);
+                updateTimeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        // Status messages
+        function showStatus(message, type = 'info') {
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            if (type === 'success') {
+                setTimeout(() => statusDiv.style.display = 'none', 3000);
+            }
+        }
+
+        // Update value displays
+        function updateDisplays() {
+            document.getElementById('opacityDisplay').textContent = document.getElementById('bannerOpacity').value + '%';
+            document.getElementById('positionDisplay').textContent = document.getElementById('bannerPosition').value + '%';
+            document.getElementById('heightDisplay').textContent = document.getElementById('bannerHeight').value + '%';
+            document.getElementById('fontDisplay').textContent = document.getElementById('fontSize').value + 'px';
+        }
+
+        // Add event listeners for auto-update
+        const controls = ['bannerText', 'bannerColor', 'bannerOpacity', 'bannerPosition', 'bannerHeight', 'fontSize'];
+        controls.forEach(id => {
+            document.getElementById(id).addEventListener('input', () => {
+                updateDisplays();
+                debounce(updateThumbnail)();
+            });
+        });
+
+        // Crop input handlers
+        ['cropX', 'cropY', 'cropWidth', 'cropHeight'].forEach(id => {
+            document.getElementById(id).addEventListener('input', debounce(() => {
+                cropData.x = parseInt(document.getElementById('cropX').value) || 0;
+                cropData.y = parseInt(document.getElementById('cropY').value) || 0;
+                cropData.width = parseInt(document.getElementById('cropWidth').value) || 0;
+                cropData.height = parseInt(document.getElementById('cropHeight').value) || 0;
+                updateCropOverlay();
+                updateThumbnail();
+            }));
+        });
+
+        imageInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                showStatus('Loading image...', 'info');
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        currentImage = img;
+                        cropData = { x: 0, y: 0, width: img.width, height: img.height };
+                        updateCropInputs();
+                        updateThumbnail();
+                        toggleCropBtn.disabled = false;
+                        resetCropBtn.disabled = false;
+                        showStatus('Image loaded successfully!', 'success');
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function updateThumbnail() {
+            if (!currentImage) return;
+
+            // Set canvas size based on crop
+            canvas.width = cropData.width;
+            canvas.height = cropData.height;
+
+            // Draw cropped image
+            ctx.drawImage(
+                currentImage,
+                cropData.x, cropData.y, cropData.width, cropData.height,
+                0, 0, cropData.width, cropData.height
+            );
+
+            // Get settings
+            const text = document.getElementById('bannerText').value;
+            const color = document.getElementById('bannerColor').value;
+            const opacity = document.getElementById('bannerOpacity').value / 100;
+            const position = document.getElementById('bannerPosition').value / 100;
+            const heightPercent = document.getElementById('bannerHeight').value / 100;
+            const fontSize = parseInt(document.getElementById('fontSize').value);
+
+            // Calculate banner dimensions
+            const bannerHeight = canvas.height * heightPercent;
+            const bannerY = (canvas.height - bannerHeight) * position;
+
+            // Draw banner
+            ctx.fillStyle = hexToRgba(color, opacity);
+            ctx.fillRect(0, bannerY, canvas.width, bannerHeight);
+
+            // Draw text
+            ctx.font = `bold ${fontSize}px -apple-system, BlinkMacSystemFont, Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            // Text shadow
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillText(text, canvas.width / 2 + 2, bannerY + bannerHeight / 2 + 2);
+
+            // Main text
+            ctx.fillStyle = 'white';
+            ctx.fillText(text, canvas.width / 2, bannerY + bannerHeight / 2);
+
+            downloadBtn.disabled = false;
+        }
+
+        // Crop functionality
+        toggleCropBtn.addEventListener('click', () => {
+            cropMode = !cropMode;
+            if (cropMode) {
+                toggleCropBtn.textContent = 'Disable Crop Mode';
+                cropOverlay.style.display = 'block';
+                canvas.style.cursor = 'crosshair';
+                showStatus('Crop mode enabled. Click and drag on the image.', 'info');
+            } else {
+                toggleCropBtn.textContent = 'Enable Crop Mode';
+                cropOverlay.style.display = 'none';
+                canvas.style.cursor = 'default';
+            }
+        });
+
+        resetCropBtn.addEventListener('click', () => {
+            if (currentImage) {
+                cropData = { x: 0, y: 0, width: currentImage.width, height: currentImage.height };
+                updateCropInputs();
+                updateCropOverlay();
+                updateThumbnail();
+                showStatus('Crop reset to full image', 'success');
+            }
+        });
+
+        canvas.addEventListener('mousedown', (e) => {
+            if (!cropMode) return;
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            dragStart.x = (e.clientX - rect.left) * scaleX;
+            dragStart.y = (e.clientY - rect.top) * scaleY;
+            isDragging = true;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!cropMode || !isDragging) return;
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const currentX = (e.clientX - rect.left) * scaleX;
+            const currentY = (e.clientY - rect.top) * scaleY;
+
+            cropData.x = Math.min(dragStart.x, currentX);
+            cropData.y = Math.min(dragStart.y, currentY);
+            cropData.width = Math.abs(currentX - dragStart.x);
+            cropData.height = Math.abs(currentY - dragStart.y);
+
+            updateCropInputs();
+            updateCropOverlay();
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                updateThumbnail();
+            }
+        });
+
+        function updateCropInputs() {
+            document.getElementById('cropX').value = Math.round(cropData.x);
+            document.getElementById('cropY').value = Math.round(cropData.y);
+            document.getElementById('cropWidth').value = Math.round(cropData.width);
+            document.getElementById('cropHeight').value = Math.round(cropData.height);
+        }
+
+        function updateCropOverlay() {
+            if (!currentImage) return;
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = rect.width / canvas.width;
+            const scaleY = rect.height / canvas.height;
+
+            cropOverlay.style.left = (cropData.x * scaleX) + 'px';
+            cropOverlay.style.top = (cropData.y * scaleY) + 'px';
+            cropOverlay.style.width = (cropData.width * scaleX) + 'px';
+            cropOverlay.style.height = (cropData.height * scaleY) + 'px';
+        }
+
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'leader-guide-thumbnail.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showStatus('Thumbnail downloaded!', 'success');
+        });
+
+        function hexToRgba(hex, opacity) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        }
+
+        // Initialize displays
+        updateDisplays();
+    </script>
+</body>
+</html>
