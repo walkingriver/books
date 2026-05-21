@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael D. Callaghan | Author & Software Developer</title>
-    <meta name="description" content="Books on career growth, communication, and software development by Michael D. Callaghan.">
+    <meta name="description" content="Fiction and non-fiction books by Michael D. Callaghan: mystery, career communication, AI-assisted development, and mobile apps.">
     <meta property="og:title" content="Michael D. Callaghan | Author">
-    <meta property="og:description" content="Books on career growth, communication, and software development.">
+    <meta property="og:description" content="Fiction and non-fiction for readers who care about accurate tech and real-world lessons.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://walkingriver.com/images/og-image.jpg">
     <meta name="twitter:card" content="summary_large_image">
@@ -85,6 +85,31 @@
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 1.5rem;
         }
+        .books-group {
+            margin-bottom: 2.5rem;
+        }
+        .books-group:last-of-type {
+            margin-bottom: 0;
+        }
+        .books-group-title {
+            font-size: 1.35rem;
+            margin: 0 0 0.35rem;
+            color: var(--color-primary);
+        }
+        .books-group-intro {
+            margin: 0 0 1.25rem;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+        .book-card-genre {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--color-accent);
+            margin-bottom: 0.35rem;
+        }
         @media (max-width: 500px) {
             .book-card {
                 flex-direction: column;
@@ -122,38 +147,64 @@
 
     <section style="padding: 4rem 0; background: var(--color-bg-light);">
         <div class="container">
-            <h2 style="text-align: center; margin-bottom: 2rem;">Books</h2>
-            <div class="books-grid">
-                <a href="pair-programming/" class="book-card">
-                    <div class="book-card-cover">
-                        <img src="pair-programming/images/cover.jpg" alt="P-AI-R Programming book cover">
-                    </div>
-                    <div class="book-card-content">
-                        <h3>P-AI-R Programming</h3>
-                        <p>A Guide to AI-Assisted Software Development, 2nd Edition — Real stories and practical workflows from the front lines.</p>
-                        <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
-                    </div>
-                </a>
-                <a href="slow-down-to-get-ahead/" class="book-card">
-                    <div class="book-card-cover">
-                        <img src="slow-down-to-get-ahead/images/cover.jpg" alt="Slow Down to Get Ahead book cover">
-                    </div>
-                    <div class="book-card-content">
-                        <h3>Slow Down to Get Ahead</h3>
-                        <p>26 Communication Lessons from 30 Years in Tech—So You Don't Learn the Hard Way</p>
-                        <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
-                    </div>
-                </a>
-                <a href="ionic-books/" class="book-card">
-                    <div class="book-card-cover">
-                        <img src="ionic-books/images/cover-react.jpg" alt="Ionic and React book cover">
-                    </div>
-                    <div class="book-card-content">
-                        <h3>Build Mobile Apps with Ionic</h3>
-                        <p>Angular & React Editions — Being Updated for 2026. Buy now and get the update free.</p>
-                        <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
-                    </div>
-                </a>
+            <h2 style="text-align: center; margin-bottom: 2.5rem;">Books</h2>
+
+            <div class="books-group">
+                <h3 class="books-group-title">Fiction</h3>
+                <p class="books-group-intro">Mystery and suspense with accurate technology at the center of the puzzle.</p>
+                <div class="books-grid">
+                    <a href="silent-entry/" class="book-card">
+                        <div class="book-card-cover">
+                            <img src="silent-entry/images/cover.jpg" alt="Silent Entry book cover">
+                        </div>
+                        <div class="book-card-content">
+                            <span class="book-card-genre">Mystery</span>
+                            <h3>Silent Entry</h3>
+                            <p>The doors were locked. The house wasn't. A police procedural in small-town New Hampshire.</p>
+                            <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="books-group">
+                <h3 class="books-group-title">Non-fiction</h3>
+                <p class="books-group-intro">Career, development, and tech for professionals who want practical guidance.</p>
+                <div class="books-grid">
+                    <a href="pair-programming/" class="book-card">
+                        <div class="book-card-cover">
+                            <img src="pair-programming/images/cover.jpg" alt="P-AI-R Programming book cover">
+                        </div>
+                        <div class="book-card-content">
+                            <span class="book-card-genre">Tech</span>
+                            <h3>P-AI-R Programming</h3>
+                            <p>A Guide to AI-Assisted Software Development, 2nd Edition — Real stories and practical workflows from the front lines.</p>
+                            <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+                        </div>
+                    </a>
+                    <a href="slow-down-to-get-ahead/" class="book-card">
+                        <div class="book-card-cover">
+                            <img src="slow-down-to-get-ahead/images/cover.jpg" alt="Slow Down to Get Ahead book cover">
+                        </div>
+                        <div class="book-card-content">
+                            <span class="book-card-genre">Career</span>
+                            <h3>Slow Down to Get Ahead</h3>
+                            <p>26 Communication Lessons from 30 Years in Tech—So You Don't Learn the Hard Way</p>
+                            <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+                        </div>
+                    </a>
+                    <a href="ionic-books/" class="book-card">
+                        <div class="book-card-cover">
+                            <img src="ionic-books/images/cover-react.jpg" alt="Ionic and React book cover">
+                        </div>
+                        <div class="book-card-content">
+                            <span class="book-card-genre">Development</span>
+                            <h3>Build Mobile Apps with Ionic</h3>
+                            <p>Angular & React Editions — Being Updated for 2026. Buy now and get the update free.</p>
+                            <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+                        </div>
+                    </a>
+                </div>
             </div>
             <div class="newsletter-cta-band">
                 <p class="newsletter-cta-band-text">New books and early chapters, a few times a year.</p>
@@ -171,7 +222,7 @@
                 </div>
                 <div class="author-bio" style="flex: 1; min-width: 300px;">
                     <p>I began programming in 1981, when a generous high school teacher let me borrow time on the county's HP 2000 mini-computer to teach myself BASIC. That early spark ignited a lifelong passion for software development.</p>
-                    <p>Throughout my career, I've contributed to projects at HP, Compaq, Dell, Disney, and various startups. I've recently jumped headfirst into AI, particularly fascinated by how Large Language Models can enhance professional workflows—you can see that in my <a href="https://amzn.to/3UkIYyg">P-AI-R Programming series</a>.</p>
+                    <p>Throughout my career, I've contributed to projects at HP, Compaq, Dell, Disney, and various startups. I've recently jumped headfirst into AI, particularly fascinated by how Large Language Models can enhance professional workflows—you can see that in my <a href="https://amzn.to/3UkIYyg">P-AI-R Programming series</a>. My first novel, <a href="silent-entry/">Silent Entry</a>, is a tech-driven mystery for readers who like accurate science in their fiction.</p>
                     <p>I'm also a trainer and educator. My courses have been published on Pluralsight and Udemy, reflecting my commitment to making complex topics accessible.</p>
                     <aside class="newsletter-cta-inline" aria-labelledby="newsletter-cta-heading">
                         <h3 id="newsletter-cta-heading">Stay in the loop</h3>
