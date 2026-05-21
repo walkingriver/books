@@ -39,6 +39,13 @@
         }
     });
 
+    document.querySelectorAll('[data-open-newsletter]').forEach(function (trigger) {
+        trigger.addEventListener('click', function (ev) {
+            ev.preventDefault();
+            openPanel();
+        });
+    });
+
     closeBtn.addEventListener('click', closePanel);
     backdrop.addEventListener('click', closePanel);
 
