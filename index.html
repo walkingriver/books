@@ -16,6 +16,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/newsletter-panel.css">
     <style>
         @media (max-width: 768px) {
             .hero .container {
@@ -178,5 +179,33 @@
             <p class="attribution">Book icon by <a href="https://pixabay.com/users/rezafir7_-30147851/">Reza Firmansyah</a> from <a href="https://pixabay.com/">Pixabay</a></p>
         </div>
     </footer>
+
+    <button type="button" id="newsletter-tab" class="newsletter-tab" aria-controls="email-updates" aria-expanded="false">
+        Email updates
+    </button>
+
+    <div id="newsletter-backdrop" class="newsletter-backdrop" hidden></div>
+
+    <aside id="email-updates" class="newsletter-panel" role="dialog" aria-labelledby="newsletter-heading" aria-modal="true" hidden>
+        <div class="newsletter-panel-header">
+            <button type="button" id="newsletter-close" class="newsletter-close" aria-label="Close email signup panel">&times;</button>
+            <h2 id="newsletter-heading">New books and notes on the science behind the fiction</h2>
+            <p class="newsletter-lead">Hear when the next book is out, and get occasional posts on what in the stories is real, what is invented, and why the answer is sometimes both.</p>
+        </div>
+        <div class="newsletter-panel-body">
+            <div class="newsletter-embed-wrap">
+                <!-- Gumroad subscribe page for Mike Callaghan (WalkingRiver); replace with Widgets embed if you prefer -->
+                <iframe
+                    title="Subscribe to email updates from Michael D. Callaghan"
+                    src="https://walkingriver.gumroad.com/subscribe"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+            </div>
+            <p class="newsletter-privacy">I never sell email addresses and won't flood you with spam. Unsubscribe anytime from any message. Prefer email? Write to <a href="mailto:michael@walkingriver.com">michael@walkingriver.com</a>.</p>
+        </div>
+    </aside>
+
+    <script src="js/newsletter-panel.js" defer></script>
 </body>
 </html>
