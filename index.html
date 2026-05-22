@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael D. Callaghan | Author & Software Developer</title>
-    <meta name="description" content="Fiction and non-fiction books by Michael D. Callaghan: mystery, literary ghost stories, career communication, AI-assisted development, and mobile apps.">
+    <meta name="description" content="Fiction and non-fiction books by Michael D. Callaghan: mystery, literary ghost stories, career communication, Agilefall survival, AI-assisted development, and mobile apps.">
     <meta property="og:title" content="Michael D. Callaghan | Author">
     <meta property="og:description" content="Fiction and non-fiction for readers who care about accurate tech and real-world lessons.">
     <meta property="og:type" content="website">
@@ -50,14 +50,19 @@
         }
         .book-card-cover {
             flex-shrink: 0;
-            width: 110px;
+            width: 160px;
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
             border-right: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--color-bg-alt);
         }
         .book-card-cover img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
         }
         .book-card-content {
@@ -117,7 +122,7 @@
             }
             .book-card-cover {
                 width: 100%;
-                height: 180px;
+                height: 220px;
                 border-right: none;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             }
@@ -201,6 +206,17 @@
                             <span class="book-card-genre">Career</span>
                             <h3>Slow Down to Get Ahead</h3>
                             <p>26 Communication Lessons from 30 Years in Tech—So You Don't Learn the Hard Way</p>
+                            <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
+                        </div>
+                    </a>
+                    <a href="agilefall/" class="book-card">
+                        <div class="book-card-cover">
+                            <img src="agilefall/images/cover.jpg" alt="Surviving Agilefall book cover">
+                        </div>
+                        <div class="book-card-content">
+                            <span class="book-card-genre">Career</span>
+                            <h3>Surviving Agilefall</h3>
+                            <p>When Your Company Does Agile, Except Not Really—a practical survival guide for hybrid process environments.</p>
                             <span class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Learn More →</span>
                         </div>
                     </a>
