@@ -119,16 +119,19 @@ strong {
 }
 
 .btn-amazon {
-    background: #ff9900;
-    color: #0f1111;
-    border: none;
+    background-color: rgb(248, 189, 25);
+    color: rgba(0, 0, 0, 0.847);
+    border: 1px solid rgb(248, 189, 25);
+    border-radius: 100px;
+    box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
 }
 
 .btn-amazon:hover {
-    background: #e88b00;
-    color: #0f1111;
+    background-color: rgb(235, 175, 20);
+    border-color: rgb(235, 175, 20);
+    color: rgba(0, 0, 0, 0.847);
     text-decoration: none;
-    transform: translateY(-2px);
+    box-shadow: rgba(213, 217, 217, 0.65) 0 3px 7px 0;
 }
 
 .btn-large {
@@ -447,13 +450,15 @@ strong {
 }
 
 .final-cta .btn-amazon {
-    background: #ff9900;
-    color: #0f1111;
+    background-color: rgb(248, 189, 25);
+    color: rgba(0, 0, 0, 0.847);
+    border-color: rgb(248, 189, 25);
 }
 
 .final-cta .btn-amazon:hover {
-    background: #e88b00;
-    color: #0f1111;
+    background-color: rgb(235, 175, 20);
+    border-color: rgb(235, 175, 20);
+    color: rgba(0, 0, 0, 0.847);
 }
 
 .guarantee {
