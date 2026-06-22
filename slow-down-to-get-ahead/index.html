@@ -16,6 +16,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/newsletter-panel.css">
 </head>
 <body>
     <!-- Hero Section -->
@@ -28,7 +29,7 @@
                     <p class="subtitle">26 Communication Lessons from 30 Years in Tech—So You Don't Learn the Hard Way</p>
                     <p class="author">by Michael D. Callaghan</p>
                     <div class="cta-buttons">
-                        <a href="https://walkingriver.gumroad.com/l/slow-down" class="btn btn-primary">Get the Book on Gumroad</a>
+                        <a href="https://amzn.to/4eBHRnD" class="btn btn-amazon">Get on Amazon</a>
                     </div>
                 </div>
                 <div class="hero-cover">
@@ -133,14 +134,14 @@
             <h2>Your Career Success Starts with the Right Words</h2>
             <p>26 chapters. 30 years of lessons. Zero fluff.</p>
             <div class="cta-buttons">
-                <a href="https://walkingriver.gumroad.com/l/slow-down" class="btn btn-primary btn-large">
-                    Get the Complete Bundle on Gumroad
-                    <span class="btn-sub">ePub + PDF + Bonus Book + 5 Bonus Materials</span>
-                </a>
-                <a href="https://amzn.to/xxxxx" class="btn btn-secondary btn-large">
+                <a href="https://amzn.to/4eBHRnD" class="btn btn-amazon btn-large">
                     Get on Amazon
                     <span class="btn-sub">Kindle · Paperback</span>
                 </a>
+                <button type="button" class="btn btn-secondary btn-large" data-open-newsletter>
+                    Get email updates
+                    <span class="btn-sub">New books and occasional notes</span>
+                </button>
             </div>
             <p class="guarantee">Questions? Email <a href="mailto:michael@walkingriver.com">michael@walkingriver.com</a></p>
         </div>
@@ -154,5 +155,32 @@
             <p class="attribution">Book icon by <a href="https://pixabay.com/users/rezafir7_-30147851/">Reza Firmansyah</a> from <a href="https://pixabay.com/">Pixabay</a></p>
         </div>
     </footer>
+
+    <button type="button" id="newsletter-tab" class="newsletter-tab" aria-controls="email-updates" aria-expanded="false">
+        Get updates
+    </button>
+
+    <div id="newsletter-backdrop" class="newsletter-backdrop" hidden></div>
+
+    <aside id="email-updates" class="newsletter-panel" role="dialog" aria-labelledby="newsletter-heading" aria-modal="true" hidden>
+        <div class="newsletter-panel-header">
+            <button type="button" id="newsletter-close" class="newsletter-close" aria-label="Close email signup panel">&times;</button>
+            <h2 id="newsletter-heading">Email updates</h2>
+            <p class="newsletter-lead">New books, early chapters, and occasional notes on writing and tech. A few messages a year, not a daily flood.</p>
+        </div>
+        <div class="newsletter-panel-body">
+            <div class="newsletter-embed-wrap">
+                <iframe
+                    title="Subscribe to email updates from Michael D. Callaghan"
+                    src="https://walkingriver.gumroad.com/subscribe"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+            </div>
+            <p class="newsletter-privacy">I never sell email addresses and won't flood you with spam. Unsubscribe anytime from any message. Prefer email? Write to <a href="mailto:michael@walkingriver.com">michael@walkingriver.com</a>.</p>
+        </div>
+    </aside>
+
+    <script src="../js/newsletter-panel.js" defer></script>
 </body>
 </html>

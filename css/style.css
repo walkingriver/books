@@ -118,6 +118,19 @@ strong {
     text-decoration: none;
 }
 
+.btn-amazon {
+    background: #ff9900;
+    color: #0f1111;
+    border: none;
+}
+
+.btn-amazon:hover {
+    background: #e88b00;
+    color: #0f1111;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
 .btn-large {
     padding: 1.25rem 2.5rem;
     font-size: 1.2rem;
@@ -431,6 +444,16 @@ strong {
 .final-cta .btn-secondary:hover {
     background: white;
     color: var(--color-primary);
+}
+
+.final-cta .btn-amazon {
+    background: #ff9900;
+    color: #0f1111;
+}
+
+.final-cta .btn-amazon:hover {
+    background: #e88b00;
+    color: #0f1111;
 }
 
 .guarantee {
