@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "npx http-server -p 8080 -o",
     "start": "npm run dev",
-    "lint": "node -e \"process.exit(0)\""
+    "lint": "node -e \"process.exit(0)\"",
+    "build:cf": "bash scripts/build-cloudflare.sh",
+    "preview:cf": "npm run build:cf && npx --yes wrangler@4 dev",
+    "deploy:cf": "npm run build:cf && npx --yes wrangler@4 deploy"
   },
   "keywords": ["books", "marketing", "static-site"],
   "author": "Michael D. Callaghan",

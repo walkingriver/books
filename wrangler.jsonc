@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/wrangler.json",
+  "name": "walkingriver-books",
+  "compatibility_date": "2025-10-01",
+  "workers_dev": true,
+  // Static site only: no Worker script. dist/ is produced by scripts/build-cloudflare.sh
+  // and holds the site under dist/books/ so asset paths match the public URLs.
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  // The site lives under walkingriver.com/books. The root domain stays on GitHub Pages.
+  // Printed editions link to these URLs, so keep both routes (with and without trailing slash).
+  "routes": [
+    { "pattern": "walkingriver.com/books", "zone_name": "walkingriver.com" },
+    { "pattern": "walkingriver.com/books/*", "zone_name": "walkingriver.com" }
+  ]
+}
